@@ -15,11 +15,11 @@ int main()
         printf("%s %s\n", ok ? "PASS" : "FAIL", name);
         failures += !ok;
     };
-    check(strcmp(UMAIPOE_RELEASE, "r11.1") == 0, "release-name");
+    check(strcmp(UMAIPOE_RELEASE, "r11.2") == 0, "release-name");
     check(strstr(s.appSubtitle, u8"우마이") != nullptr, "brand-overrides-defaults");
     check(strstr(s.aboutBody, "Traditional Chinese") == nullptr, "no-original-promotion");
     check(strcmp(s.clCurrent, u8"현재 버전") == 0, "current-label-korean");
-    check(strstr(kChangelogTextEn, "r11.1 (2026-11-17)") == kChangelogTextEn, "current-release-first");
+    check(strstr(kChangelogTextEn, "r11.2 (2026-11-17)") == kChangelogTextEn, "current-release-first");
     check(strstr(kChangelogTextEn, "v1.8.7") == nullptr, "original-history-removed");
     check(strcmp(kChangelogText, kChangelogTextEn) == 0, "locale-history-consistent");
     check(sizeof(kUmaipoeLogo) == 96 * 96 * 4, "logo-rgba-size");
