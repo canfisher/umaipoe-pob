@@ -132,6 +132,7 @@ def apply(root):
         p = host / name
         text = p.read_text(encoding='utf-8')
         text = text.replace('L"PobTools"', 'L"Umaipoe PoB"')
+        text = text.replace('GetPrivateProfileStringW(L"Umaipoe PoB",', 'GetPrivateProfileStringW(L"PobTools",')
         text = text.replace('L" - PobTools"', 'L" - Umaipoe PoB"')
         text = text.replace('titleUtf8 = "PobTools"', 'titleUtf8 = u8"우마이 PoB"')
         p.write_text(text, encoding='utf-8')
