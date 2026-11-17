@@ -1,0 +1,47 @@
+{
+  "names": {
+    "Xibaqua": "지바콰", "Zerphi": "제르피", "Doryani": "도리아니",
+    "Avarius": "아배리우스", "Maxarius": "막사리우스", "Dominus": "도미누스",
+    "Chitus": "치투스", "Cadiro": "카디로", "Victario": "빅타리오", "Caspiro": "카스피로",
+    "Deshret": "데쉬렛", "Asenath": "아세나스", "Balbala": "발바라", "Nasima": "나시마",
+    "Vorana": "보라나", "Medved": "메드베드", "Uhtred": "우트레드",
+    "Tecrod": "테크로드", "Ulaman": "울라만", "Kurgal": "쿠르갈", "Amanamu": "아마나무", "Zorath": "조라스"
+  },
+  "ui_labels": {
+    "Attack Block": "공격 막기", "Attack Dodge": "공격 완벽회피", "Spell Dodge": "주문 완벽회피", "Chance To Shock": "감전 확률",
+    "Add Accuracy": "명중 추가 효과", "Add Ailment Duration": "상태 이상 지속시간 추가 효과",
+    "Add Ailment Effect": "상태 이상 효과 추가", "Add Alchemists Genius": "연금술사의 천재성 추가",
+    "Add Armour": "방어도 추가 효과", "Add Aura Effect": "오라 효과 추가",
+    "Add Blind": "실명 추가 효과", "Add Burning Damage": "화상 피해 추가 효과",
+    "Add Cold Resistance": "냉기 저항 추가 효과", "Add Damage From Crits": "받는 치명타 피해 추가 효과",
+    "Add Dexterity": "민첩 추가 효과", "Add Double Damage": "2배 피해 추가 효과",
+    "Add Elemental Damage": "원소 피해 추가 효과", "Add Endurance Charge On Kill": "처치 시 인내 충전 추가 효과",
+    "Add Evasion": "회피 추가 효과", "Add Faster Ignite": "점화 피해 가속 추가 효과",
+    "Add Faster Poison": "중독 피해 가속 추가 효과", "Add Fire Resistance": "화염 저항 추가 효과",
+    "Add Flask Charges": "플라스크 충전 추가 효과", "Add Fortify Effect": "방어 상승 효과 추가",
+    "Add Frenzy Charge On Kill": "처치 시 격분 충전 추가 효과", "Add Global Crit Chance": "일반 치명타 확률 추가 효과",
+    "Add Intimidate": "위협 추가 효과", "Add Leech": "흡수 추가 효과", "Add Life": "생명력 추가 효과",
+    "Add Life Regen": "생명력 재생 추가 효과", "Add Melee Crit Chance": "근접 치명타 확률 추가 효과",
+    "Add Melee Crit Multi": "근접 치명타 피해 배율 추가 효과", "Add Melee Damage": "근접 피해 추가 효과",
+    "Add Minion Damage": "소환수 피해 추가 효과", "Add Minion Movement Speed": "소환수 이동 속도 추가 효과",
+    "Add Movement Speed": "이동 속도 추가 효과", "Add Onslaught": "맹공 추가 효과",
+    "Add Percent Dexterity": "민첩 비율 추가 효과", "Add Percent Strength": "힘 비율 추가 효과",
+    "Add Physical Added As Cold": "물리 피해의 추가 냉기 피해 획득", "Add Physical Added As Fire": "물리 피해의 추가 화염 피해 획득",
+    "Add Physical Damage": "물리 피해 추가 효과", "Add Poison Damage": "중독 피해 추가 효과",
+    "Add Projectile Damage": "투사체 피해 추가 효과", "Add Rage On Melee Hit": "근접 명중 시 격노 추가 효과",
+    "Add Reduced Stun Threshold": "기절 한계치 감소 추가 효과", "Add Speed": "공격 및 시전 속도 추가 효과",
+    "Add Strength": "힘 추가 효과", "Add Stun Avoid": "기절 회피 추가 효과",
+    "Add Stun Duration": "기절 지속시간 추가 효과", "Add Totem Damage": "토템 피해 추가 효과",
+    "Add Totem Placement Speed": "토템 설치 속도 추가 효과", "Add Warcry Buff Effect": "함성 버프 효과 추가"
+  },
+  "stat_templates": {
+    "{0}% chance to Block Spell Damage while holding a Staff or Shield": "지팡이 혹은 방패를 들고 있는 동안 주문 피해를 막아낼 확률 {0:+d}%",
+    "{0}% increased Accuracy Rating while you have at least {1} nearby Ally": "주변의 동료가 {1}명 이상이면 명중 {0}% 증가",
+    "Projectiles deal {0}% increased Damage with Hits to targets at the start\nof their movement, reducing to {1}% as they travel farther": "발사 지점에서 투사체가 대상에게 주는 명중 피해 {0}% 증가\n투사체가 멀어질수록 이 수치가 {1}%까지 감소"
+  },
+  "provenance": {
+    "names": "Names matched against bundled ko-KR/stats.json entries containing the corresponding English conqueror name.",
+    "ui_labels": "Descriptions of internal PoB Add/Notable placeholders, not newly invented in-game passive names.",
+    "stat_templates": "Spell block formatting repaired using ko-KR/passives.json +3%/+6% wording; Accuracy/point-blank text retains original English conditions and numerical values."
+  }
+}

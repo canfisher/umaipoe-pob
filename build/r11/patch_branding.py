@@ -139,7 +139,7 @@ def apply(root):
     text = p.read_text(encoding='utf-8')
     coverage = 'if (zhPct >= 0) verText += u8" · 한국어 " + std::to_string(zhPct) + "%";'
     assert text.count(coverage) == 1
-    text = text.replace(coverage, 'verText += u8" · 한국어 메뉴 / 일부 효과 영문";')
+    text = text.replace(coverage, 'verText += u8" · 한국어";')
     p.write_text(text, encoding='utf-8')
     atlas = (host / 'atlas_planner.cpp').read_text(encoding='utf-8')
     assert all(label in atlas for label in ['아틀라스 전략', '패시브 할당', '계획 모드', '버전 비교'])

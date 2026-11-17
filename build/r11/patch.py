@@ -47,6 +47,8 @@ from patch_farming import apply
 apply(root)
 from patch_branding import apply as apply_branding
 apply_branding(root)
+from patch_jewel_ko import apply as apply_jewel_ko
+apply_jewel_ko(root)
 ui_audit = {}
 for name in ['atlas_planner.cpp', 'filter_editor.cpp', 'regex_tool_ui.cpp', 'timeless_jewel_ui.cpp', 'warehouse_ui.cpp']:
     untranslated = sorted({m.group('body') for m in token.finditer((host / name).read_text(encoding='utf-8'))
