@@ -135,6 +135,12 @@ def apply(root):
         text = text.replace('L" - PobTools"', 'L" - Umaipoe PoB"')
         text = text.replace('titleUtf8 = "PobTools"', 'titleUtf8 = u8"우마이 PoB"')
         p.write_text(text, encoding='utf-8')
+    p = host / 'timeless_jewel_ui.cpp'
+    text = p.read_text(encoding='utf-8')
+    coverage = 'if (zhPct >= 0) verText += u8" · 한국어 " + std::to_string(zhPct) + "%";'
+    assert text.count(coverage) == 1
+    text = text.replace(coverage, 'verText += u8" · 한국어 메뉴 / 일부 효과 영문";')
+    p.write_text(text, encoding='utf-8')
     atlas = (host / 'atlas_planner.cpp').read_text(encoding='utf-8')
     assert all(label in atlas for label in ['아틀라스 전략', '패시브 할당', '계획 모드', '버전 비교'])
     print('Umaipoe branding, history, links and update isolation applied')
