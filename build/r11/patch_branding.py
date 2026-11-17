@@ -37,7 +37,7 @@ def apply(root):
             '\n'.join('u8' + json.dumps(line + '\n', ensure_ascii=False) for line in history.splitlines()) + ';\n', encoding='utf-8')
     p = host / 'app_version.h'
     text = p.read_text(encoding='utf-8')
-    for key, value in [('MAJOR', 11), ('MINOR', 2), ('PATCH', 0)]:
+    for key, value in [('MAJOR', 12), ('MINOR', 0), ('PATCH', 0)]:
         text = re.sub(rf'(#define POBTOOLS_VER_{key}) \d+', rf'\g<1> {value}', text)
     p.write_text(text, encoding='utf-8')
     p = host / 'pob-zh.rc'

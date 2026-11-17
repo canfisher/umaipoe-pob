@@ -1,13 +1,13 @@
 #pragma once
 #include "launcher_strings.h"
 
-#define UMAIPOE_RELEASE "r11.2"
+#define UMAIPOE_RELEASE "r12"
 static const wchar_t* kUmaipoeDownload = L"https://umaipoe.tistory.com/66";
 static const wchar_t* kUmaipoeRepository = L"https://github.com/canfisher/umaipoe-pob";
 
 inline void UmaipoeStrings(LauncherStrings& s)
 {
-    s.appSubtitle = u8"우마이 한국어 빌드·파밍 도구 · r11.2";
+    s.appSubtitle = u8"우마이 한국어 빌드·파밍 도구 · r12";
     s.aboutTagline = u8"한국어 PoB 유지보수와 플레이 편의 도구";
     s.aboutBody = u8"우마이 한글 PoB\n한글화·오류 수정·파밍 도구를 우마이 배포판에서 관리합니다.\n비공식 팬 도구이며 Grinding Gear Games와 제휴 관계가 없습니다.\n오픈소스 라이선스와 구성 요소 고지는 동봉한 LICENSE·NOTICE 파일에 보존되어 있습니다.\n궁금한 점이나 피드백은 블로그 댓글로 남겨 주세요.";
     s.clSearchHint = u8"버전·수정 내용 검색…";
