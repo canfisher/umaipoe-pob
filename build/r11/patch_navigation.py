@@ -62,6 +62,7 @@ def apply(root):
     p = host / 'host_main.cpp'
     text = p.read_text(encoding='utf-8')
     text = text.replace('#include "launcher_ui.h"', '#include "launcher_ui.h"\n#include "umaipoe_navigation.h"')
+    text = replace(text, 'if (!arg1.empty()) {', 'if (!arg1.empty() && arg1 != L"--home") {')
     text = replace(text, '\tPobLaunch::RelaunchMarker pending = take_relaunch_marker(dir);', '''    if (arg1 == L"--home") {
         if (HWND home = UmaipoeNavigation::Find(UmaipoeNavigation::kHome)) {
             SetPropW(home, UmaipoeNavigation::kHomeRequest, reinterpret_cast<HANDLE>(1));
