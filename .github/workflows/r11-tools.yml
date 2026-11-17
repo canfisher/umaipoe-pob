@@ -1,0 +1,40 @@
+name: Build isolated r11 Korean tools
+on:
+  push:
+    branches: [r11-korean-tools]
+permissions:
+  contents: read
+jobs:
+  host:
+    runs-on: windows-2022
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Obtain pinned upstream source
+        shell: pwsh
+        run: |
+          git clone --filter=blob:none --sparse https://github.com/Hsiung-Shao/PobTools-zh.git upstream
+          git -C upstream checkout 389582b0595a3ccb0a0cae9923dd110e8922e259
+          git -C upstream sparse-checkout set pob-zh-engine/host pob-zh-engine/translate pob-zh-engine/dep/imgui pob-zh-engine/dep/stb pob-zh-engine/dep/miniz pob-zh-engine/deps/nlohmann pob-zh-engine/engine/common
+      - name: Patch and build launcher only
+        shell: pwsh
+        run: |
+          $vs = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -latest -property installationPath
+          Import-Module "$vs/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"
+          Enter-VsDevShell -VsInstallPath $vs -SkipAutomaticLocation -DevCmdArguments '-arch=x64 -host_arch=x64'
+          python build/r11/patch.py upstream/pob-zh-engine
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python build/r11/deps.py upstream/pob-zh-engine
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          python build/r11/configure.py upstream/pob-zh-engine
+          cmake -S upstream/pob-zh-engine -B out -G Ninja -DCMAKE_BUILD_TYPE=Release
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          cmake --build out --parallel 3
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r11-host
+          path: |
+            out/pob-zh.exe
+            upstream/pob-zh-engine/localization-report.json
+          if-no-files-found: error
