@@ -5,6 +5,7 @@ def apply(root):
     from patch_branding import function_body
     host=Path(root)/'host'
     mapping=json.loads(Path(__file__).with_name('complete-ko.json').read_text(encoding='utf-8'))
+    mapping.update({'+2 力量':'힘 +2','+4 力量':'힘 +4','+2 敏捷':'민첩 +2','+4 敏捷':'민첩 +4','+5 奉獻':'헌신 +5','增加 1% 保護':'수호 1% 증가','增加 2% 保護':'수호 2% 증가'})
     token=re.compile(r'//[^\n]*|/\*[\s\S]*?\*/|[\x27](?:[^\x27\\]|\\.)*[\x27]|(?:u8|L)?R"(?P<delim>[^ ()\\\t\r\n]{0,16})\([\s\S]*?\)(?P=delim)"|(?P<prefix>u8|L)?"(?P<body>(?:[^"\\]|\\.)*)"')
     changed={}
     for path in host.glob('*'):
