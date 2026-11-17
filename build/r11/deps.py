@@ -30,7 +30,7 @@ package.write_bytes(urllib.request.urlopen('https://github.com/canfisher/umaipoe
 (vendor / 'lib').mkdir(parents=True, exist_ok=True)
 with zipfile.ZipFile(package) as archive:
     for name in ('glfw3', 'libGLESv2', 'WebView2Loader', 'libwebpdecoder'):
-        entry = next(p for p in archive.namelist() if p.endswith('/engine/' + name + '.dll'))
+        entry = next(p for p in archive.namelist() if p.endswith('engine/' + name + '.dll'))
         dll = vendor / (name + '.dll')
         dll.write_bytes(archive.read(entry))
         listing = subprocess.check_output(['dumpbin', '/exports', str(dll)], text=True)

@@ -19,7 +19,7 @@ assert 'https://hsiung-shao.github.io/support/' not in text
 source.write_text(text, encoding='utf-8')
 
 translations = json.loads((Path(__file__).parent / 'tool-ko.json').read_text(encoding='utf-8'))
-token = re.compile(r'//[^\n]*|/\*[\s\S]*?\*/|(?:u8|L)?R"(?P<delim>[^ ()\\\t\r\n]{0,16})\([\s\S]*?\)(?P=delim)"|(?P<prefix>u8|L)?"(?P<body>(?:[^"\\]|\\.)*)"')
+token = re.compile(r'//[^\n]*|/\*[\s\S]*?\*/|[\x27](?:[^\x27\\]|\\.)*[\x27]|(?:u8|L)?R"(?P<delim>[^ ()\\\t\r\n]{0,16})\([\s\S]*?\)(?P=delim)"|(?P<prefix>u8|L)?"(?P<body>(?:[^"\\]|\\.)*)"')
 changes = {}
 for path in host.glob('*'):
     if path.suffix not in ('.cpp', '.h') or 'selftest' in path.name or path.name == 'launcher_strings.h':
