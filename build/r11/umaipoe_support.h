@@ -7,7 +7,7 @@
 
 inline void UmaipoeSupportLink(const std::wstring& root)
 {
-    static std::wstring url;
+    static std::wstring url = L"https://buymeacoffee.com/umaipob";
     static bool loaded = false;
     if (!loaded) {
         loaded = true;

@@ -113,11 +113,30 @@ def apply(root):
     text = function_body(text, 'int RunAppUpdateCli(', '    printf("Use Umaipoe-PoB.exe. https://umaipoe.tistory.com/66\\n");\n    return 3;')
     text = function_body(text, 'int RunAppFetchTest(', '    return 3;')
     p.write_text(text, encoding='utf-8')
-    for name in ['host_main.cpp', 'window_manager.cpp', 'pob_protocol.cpp']:
+    tool_titles = {
+        'atlas_planner.cpp': '아틀라스 전략',
+        'filter_editor.cpp': '아이템 필터 편집기',
+        'launcher_editor.cpp': '번역 편집기',
+        'regex_tool_ui.cpp': '지도 검색식',
+        'timeless_jewel_ui.cpp': '무궁한 주얼 검색기',
+        'warehouse_ui.cpp': '보관함 수익 기록',
+    }
+    for name, title in tool_titles.items():
+        p = host / name
+        text, count = re.subn(r'desc\.titleUtf8 = "[^"\n]*";',
+                             f'desc.titleUtf8 = u8"우마이 PoB — {title}";',
+                             p.read_text(encoding='utf-8'))
+        assert count == 1, name
+        p.write_text(text, encoding='utf-8')
+    for name in ['host_main.cpp', 'window_manager.cpp', 'pob_protocol.cpp', 'modern_ui_window.cpp', 'tool_window.h']:
         p = host / name
         text = p.read_text(encoding='utf-8')
         text = text.replace('L"PobTools"', 'L"Umaipoe PoB"')
+        text = text.replace('L" - PobTools"', 'L" - Umaipoe PoB"')
+        text = text.replace('titleUtf8 = "PobTools"', 'titleUtf8 = u8"우마이 PoB"')
         p.write_text(text, encoding='utf-8')
+    atlas = (host / 'atlas_planner.cpp').read_text(encoding='utf-8')
+    assert all(label in atlas for label in ['아틀라스 전략', '패시브 할당', '계획 모드', '버전 비교'])
     print('Umaipoe branding, history, links and update isolation applied')
 
 
