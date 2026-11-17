@@ -47,3 +47,11 @@ from patch_farming import apply
 apply(root)
 from patch_branding import apply as apply_branding
 apply_branding(root)
+ui_audit = {}
+for name in ['atlas_planner.cpp', 'filter_editor.cpp', 'regex_tool_ui.cpp', 'timeless_jewel_ui.cpp', 'warehouse_ui.cpp']:
+    untranslated = sorted({m.group('body') for m in token.finditer((host / name).read_text(encoding='utf-8'))
+        if m.group('body') is not None and re.search(r'[\u4e00-\u9fff]', m.group('body'))})
+    permitted = {'反射', '腐化的屍體'} if name == 'regex_tool_ui.cpp' else set()
+    assert not set(untranslated) - permitted, (name, untranslated)
+    ui_audit[name] = {'untranslated_ui': [], 'preserved_search_fixtures': untranslated}
+(root / 'korean-ui-audit.json').write_text(json.dumps(ui_audit, ensure_ascii=False, indent=2), encoding='utf-8')

@@ -47,4 +47,5 @@ jobs:
             out/farming-test.txt
             out/branding-test.txt
             upstream/pob-zh-engine/localization-report.json
+            upstream/pob-zh-engine/korean-ui-audit.json
           if-no-files-found: error
