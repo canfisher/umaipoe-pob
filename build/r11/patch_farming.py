@@ -9,8 +9,17 @@ def apply(root):
     path = host / 'atlas_planner.cpp'
     text = path.read_text(encoding='utf-8')
     text = text.replace('#include <vector>', '#include <vector>\n#include "umaipoe_farming.h"', 1)
+    text = text.replace('const char* tabs[4] = { u8"설정",', 'const char* tabs[4] = { u8"트리",', 1)
+    text = text.replace('updater.RequestCheck(false);', '// Atlas data is versioned with the Umaipoe release.')
+    text = text.replace('updater.RequestCheck(true);', 'noticeMsg_ = u8"아틀라스 자료는 Umaipoe-PoB.exe의 업데이트로 제공됩니다.";')
     text = text.replace('\tvoid saveActive()', '#include "umaipoe_farming_panel.inc"\n\tvoid saveActive()', 1)
     text = text.replace('// --- points summary (pinned):', 'renderFarmingPanel();\n\t\t\t// --- points summary (pinned):', 1)
+    path.write_text(text, encoding='utf-8')
+    path = host / 'app_update.cpp'
+    text = path.read_text(encoding='utf-8')
+    for signature in ('void AppUpdater::RequestCheck(CheckReason reason)', 'void AppUpdater::StartAppUpdate()', 'void AppUpdater::StartTranslationUpdate()'):
+        start = text.index('{', text.index(signature))
+        text = text[:start + 1] + '\n\tsetPhase(AppUpdatePhase::Idle, u8"우마이 업데이트는 Umaipoe-PoB.exe를 다시 실행하면 확인합니다.");\n\treturn;\n' + text[start + 1:]
     path.write_text(text, encoding='utf-8')
     path = host / 'atlas_persist.h'
     text = path.read_text(encoding='utf-8')

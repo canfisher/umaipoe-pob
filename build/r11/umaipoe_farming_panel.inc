@@ -1,6 +1,8 @@
     UmaipoeFarm::Catalog farmCatalog_;
     std::string farmSeason_, farmError_, farmSearch_, farmNotice_;
     bool farmReady_ = false;
+    int farmBudgetEdit_ = 150;
+    bool farmBudgetEditing_ = false;
 
     bool farmLoad() {
         if (farmSeason_ == viewTag) return farmReady_;
@@ -83,8 +85,12 @@
             if (ImGui::IsItemHovered()) ImGui::SetTooltip("%s", c.note.c_str());
         }
         ImGui::EndChild();
+        if (!farmBudgetEditing_) farmBudgetEdit_ = state.budget;
+        ImGui::Text(u8"사용할 포인트: %d", farmBudgetEdit_);
         ImGui::SetNextItemWidth(-1);
-        changed |= ImGui::SliderInt(u8"포인트 예산##farmbudget", &state.budget, 0, farmCatalog_.maximum);
+        ImGui::SliderInt("##farmbudget", &farmBudgetEdit_, 0, farmCatalog_.maximum);
+        farmBudgetEditing_ = ImGui::IsItemActive();
+        if (ImGui::IsItemDeactivatedAfterEdit()) { state.budget = farmBudgetEdit_; changed = true; }
         for (int budget : {30, 60, 90, 120, 150}) {
             if (budget != 30) ImGui::SameLine();
             if (ImGui::SmallButton((std::to_string(budget) + "##farmbudget").c_str())) { state.budget = budget; changed = true; }
@@ -124,6 +130,7 @@
         if (changed) farmApply(state);
         if (!farmNotice_.empty()) ImGui::TextWrapped("%s", farmNotice_.c_str());
         ImGui::TextWrapped(u8"세부 옵션은 트리에서 직접 선택하세요. 성역·탐광·강탈 지역 내부에는 아틀라스가 적용되지 않습니다.");
+        ImGui::TextWrapped(u8"파밍이나 포인트 제한을 다시 바꾸면 수동으로 편집한 배치는 새로 계산됩니다. 따로 남길 배치는 먼저 사본을 만드세요.");
         ImGui::TextWrapped(u8"원하는 파밍을 연결하는 출발용 구성입니다. 최대 수익이나 모든 핵심노드를 보장하지 않습니다.");
         if (ImGui::CollapsingHeader(u8"배치하지 못한 노드와 이유")) {
             const auto result = UmaipoeFarm::Calculate(farmCatalog_, state);
