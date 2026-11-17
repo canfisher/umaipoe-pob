@@ -13,7 +13,7 @@ def apply(root):
     shutil.copy2(HERE / 'navigation_test.cpp', host / 'navigation_test.cpp')
     p = host / 'tool_window.cpp'
     text = p.read_text(encoding='utf-8')
-    text = text.replace('#include "tool_window.h"', '#include "tool_window.h"\n#include "umaipoe_navigation.h"')
+    text = text.replace('#include "tool_window.h"', '#include "tool_window.h"\n#include "umaipoe_navigation.h"\n#include "ui_icons.h"')
     text = replace(text, '\tglfwMakeContextCurrent(win);', '''    const std::wstring navigationKey = UmaipoeNavigation::ToolKey(panel.PanelId());
     SetPropW(glfwGetWin32Window(win), navigationKey.c_str(), reinterpret_cast<HANDLE>(1));
 \tglfwMakeContextCurrent(win);''')
