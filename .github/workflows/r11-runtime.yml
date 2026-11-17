@@ -1,0 +1,40 @@
+name: Build guarded GLFW runtime
+on:
+  push:
+    branches: [r11-runtime-fix]
+permissions:
+  contents: read
+jobs:
+  runtime:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - name: Build pinned GLFW with owned-window guard
+        shell: pwsh
+        run: |
+          $vs = & "${env:ProgramFiles(x86)}/Microsoft Visual Studio/Installer/vswhere.exe" -latest -property installationPath
+          Import-Module "$vs/Common7/Tools/Microsoft.VisualStudio.DevShell.dll"
+          Enter-VsDevShell -VsInstallPath $vs -SkipAutomaticLocation -DevCmdArguments '-arch=x64 -host_arch=x64'
+          git clone https://github.com/glfw/glfw.git glfw
+          git -C glfw checkout 7b6aead9fb88b3623e3b3725ebb42670cbe4c579
+          python build/r11-runtime/patch.py glfw
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          cmake -S glfw -B out -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF -DGLFW_BUILD_DOCS=OFF
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          cmake --build out --parallel 3
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          cl /nologo /O2 glfw/ownership-test.c /Fe:out/ownership-test.exe
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          & ./out/ownership-test.exe | Tee-Object -FilePath out/ownership-test.txt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          git -C glfw diff > out/glfw-owned-window.patch
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: r11-guarded-glfw
+          path: |
+            out/src/glfw3.dll
+            out/ownership-test.txt
+            out/glfw-owned-window.patch
+            glfw/LICENSE.md
+          if-no-files-found: error
