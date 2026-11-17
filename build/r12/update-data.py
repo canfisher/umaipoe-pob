@@ -5,6 +5,10 @@ root=Path(__file__).resolve().parents[2]
 work=Path(__file__).parent
 app=root/'outputs/pob330-r12/Umaipoe-PoB-r12'
 data=app/'Data'
+ui_path=data/'poe1/ko-KR/ui.json'
+ui=json.loads(ui_path.read_text(encoding='utf-8-sig'))
+ui['entries']['Tree']='패시브'
+ui_path.write_text(json.dumps(ui,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
 script=root/'work/pob330-r11-localization/release-repo/build/r11/localize-jewel-display.py'
 sys.argv=[str(script),'--app',str(app)]
 scope={'__file__':str(script)}
