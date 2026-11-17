@@ -36,6 +36,13 @@ inline void UmaipoeSupportLink(const std::wstring& root)
             CloseHandle(file);
         }
     }
-    if (!url.empty() && PobUi::Link(u8"우마이 한글화·기능 개선 후원"))
+    if (!url.empty() && PobUi::Link(u8"우마이 응원 페이지"))
         ShellExecuteW(nullptr, L"open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+}
+
+inline void UmaipoeCommunityLinks(const std::wstring& root)
+{
+    if (PobUi::Link(u8"우마이 블로그 · 질문과 피드백"))
+        ShellExecuteW(nullptr, L"open", L"https://umaipoe.tistory.com/66", nullptr, nullptr, SW_SHOWNORMAL);
+    UmaipoeSupportLink(root);
 }

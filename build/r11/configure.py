@@ -27,5 +27,9 @@ add_executable(farming-test host/farming_test.cpp host/atlas_persist.cpp engine/
 target_include_directories(farming-test PRIVATE host deps/nlohmann)
 target_compile_options(farming-test PRIVATE /utf-8 /O2 /EHsc)
 set_property(TARGET farming-test PROPERTY MSVC_RUNTIME_LIBRARY MultiThreaded)
+add_executable(branding-test host/branding_test.cpp)
+target_include_directories(branding-test PRIVATE host)
+target_compile_options(branding-test PRIVATE /utf-8 /O2 /EHsc)
+set_property(TARGET branding-test PROPERTY MSVC_RUNTIME_LIBRARY MultiThreaded)
 '''
 (root / 'CMakeLists.txt').write_text(cmake, encoding='utf-8')

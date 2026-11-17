@@ -33,6 +33,11 @@ jobs:
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           & ./out/farming-test.exe build/r11/umaipoe_atlas_farming.json build/r11/farming-fixtures.json | Tee-Object -FilePath out/farming-test.txt
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          & ./out/branding-test.exe | Tee-Object -FilePath out/branding-test.txt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $blocked = Start-Process ./out/pob-zh.exe -ArgumentList '--app-update-check' -WindowStyle Hidden -Wait -PassThru
+          if ($blocked.ExitCode -ne 3) { throw 'The original updater must remain disabled' }
+          'PASS original updater CLI blocked (exit 3)' | Add-Content out/branding-test.txt
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: r11-host
@@ -40,5 +45,6 @@ jobs:
             out/pob-zh.exe
             out/farming-test.exe
             out/farming-test.txt
+            out/branding-test.txt
             upstream/pob-zh-engine/localization-report.json
           if-no-files-found: error

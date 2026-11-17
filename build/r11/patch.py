@@ -45,3 +45,5 @@ for path in host.glob('*'):
 print(json.dumps(changes, ensure_ascii=False))
 from patch_farming import apply
 apply(root)
+from patch_branding import apply as apply_branding
+apply_branding(root)
