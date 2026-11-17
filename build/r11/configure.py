@@ -23,5 +23,9 @@ target_include_directories(pob-zh PRIVATE dep/imgui dep/imgui/backends dep/imgui
 target_link_directories(pob-zh PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/vendor/lib")
 target_link_libraries(pob-zh PRIVATE glfw3 libGLESv2 WebView2Loader libwebpdecoder delayimp)
 target_link_options(pob-zh PRIVATE /DELAYLOAD:glfw3.dll /DELAYLOAD:libGLESv2.dll /DELAYLOAD:WebView2Loader.dll /DELAYLOAD:libwebpdecoder.dll)
+add_executable(farming-test host/farming_test.cpp host/atlas_persist.cpp engine/common/base64.c)
+target_include_directories(farming-test PRIVATE host deps/nlohmann)
+target_compile_options(farming-test PRIVATE /utf-8 /O2 /EHsc)
+set_property(TARGET farming-test PROPERTY MSVC_RUNTIME_LIBRARY MultiThreaded)
 '''
 (root / 'CMakeLists.txt').write_text(cmake, encoding='utf-8')

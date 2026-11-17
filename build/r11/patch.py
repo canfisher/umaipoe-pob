@@ -13,7 +13,7 @@ text = text[:first] + '\t\t\t\tif (c == kLinkColumnCount - 1) UmaipoeSupportLink
 first = text.index('\t\t\tif (PobUi::Button(S.discord,')
 last = text.index('\n\t\t\t// The attribution lines', first)
 text = text[:first] + '\t\t\tUmaipoeSupportLink(exeDir);\n' + text[last:]
-text = '#include "umaipoe_support.h"\n' + text
+text = text.replace('#include <vector>', '#include <vector>\n#include "umaipoe_support.h"', 1)
 assert 'https://discord.gg/6VamPQb8nC' not in text
 assert 'https://hsiung-shao.github.io/support/' not in text
 source.write_text(text, encoding='utf-8')
@@ -43,3 +43,5 @@ for path in host.glob('*'):
 (host / 'umaipoe_support.h').write_text((Path(__file__).parent / 'umaipoe_support.h').read_text(encoding='utf-8'), encoding='utf-8')
 (root / 'localization-report.json').write_text(json.dumps(changes, ensure_ascii=False, indent=2), encoding='utf-8')
 print(json.dumps(changes, ensure_ascii=False))
+from patch_farming import apply
+apply(root)

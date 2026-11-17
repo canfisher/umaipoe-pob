@@ -31,10 +31,14 @@ jobs:
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
           cmake --build out --parallel 3
           if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          & ./out/farming-test.exe build/r11/umaipoe_atlas_farming.json build/r11/farming-fixtures.json | Tee-Object -FilePath out/farming-test.txt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: r11-host
           path: |
             out/pob-zh.exe
+            out/farming-test.exe
+            out/farming-test.txt
             upstream/pob-zh-engine/localization-report.json
           if-no-files-found: error
