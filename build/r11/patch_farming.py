@@ -12,6 +12,7 @@ def apply(root):
     text = text.replace('const char* tabs[4] = { u8"설정",', 'const char* tabs[4] = { u8"트리",', 1)
     text = text.replace('updater.RequestCheck(false);', '// Atlas data is versioned with the Umaipoe release.')
     text = text.replace('updater.RequestCheck(true);', 'noticeMsg_ = u8"아틀라스 자료는 Umaipoe-PoB.exe의 업데이트로 제공됩니다.";')
+    text = text.replace('renderProfitTab();', 'ImGui::TextWrapped(u8"참고: 이 수익 화면의 지도·갑충석·아스트롤라베 목록은 3.29 자료입니다. 3.30 배치 조건·시세는 검증되지 않았습니다. 새 파밍 자동 배치는 트리 탭에서 사용하세요.");\n\t\t\trenderProfitTab();', 1)
     text = text.replace('\tvoid saveActive()', '#include "umaipoe_farming_panel.inc"\n\tvoid saveActive()', 1)
     text = text.replace('// --- points summary (pinned):', 'renderFarmingPanel();\n\t\t\t// --- points summary (pinned):', 1)
     path.write_text(text, encoding='utf-8')
