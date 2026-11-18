@@ -61,3 +61,6 @@ for name in ['atlas_planner.cpp', 'filter_editor.cpp', 'regex_tool_ui.cpp', 'tim
     assert not set(untranslated) - permitted, (name, untranslated)
     ui_audit[name] = {'untranslated_ui': [], 'preserved_search_fixtures': untranslated}
 (root / 'korean-ui-audit.json').write_text(json.dumps(ui_audit, ensure_ascii=False, indent=2), encoding='utf-8')
+
+from patch_icon_resource import apply as apply_icon_resource
+apply_icon_resource(root)
