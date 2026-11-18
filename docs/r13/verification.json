@@ -1,0 +1,39 @@
+{
+  "version": "r13",
+  "package_activation": {
+    "passed": true,
+    "build_preserved": true,
+    "settings_preserved": true,
+    "previous_version_preserved": true,
+    "failure_restore": true
+  },
+  "packaged_native_startup": {
+    "passed": true,
+    "startup_calculation_save_reload": true
+  },
+  "activation_seconds": 9.6198181,
+  "comparison": {
+    "basic_assertions": 29,
+    "synthetic_crosscheck_assertions": 230,
+    "shockwave_crosscheck_assertions": 234,
+    "arc_ignite_crosscheck_assertions": 234,
+    "condition_assertions": 6,
+    "ui": {
+      "version": "r13",
+      "native_ui": true,
+      "edit_value_31": true,
+      "code_clipboard_import": true,
+      "report_clipboard_paste": true,
+      "korean_save_reopen": true,
+      "original_file_unchanged": true,
+      "sample": "synthetic Shockwave Totem + Lifetap, no allocated tree or equipment, not a recommended build",
+      "average_hit_before": 150.803125,
+      "average_hit_after": 197.56875,
+      "screenshots": [
+        "comparison-ui.png",
+        "reopened-ui.png"
+      ]
+    },
+    "scope": "Native calculation checks, not in-game encounter or universal mechanic verification"
+  }
+}
