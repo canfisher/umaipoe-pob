@@ -5,7 +5,7 @@ def apply(root):
     # SimpleGraphic retains the callback argument after EnumResourceNamesW.
     # A numeric resource identifier remains valid after the callback returns.
     for name, old, new in (
-        ("pob-zh.rc", 'GLFW_ICON ICON "pobtools.ico"', '101 ICON "pobtools.ico"'),
+        ("pob-zh.rc", 'GLFW_ICON ICON "umaipoe.ico"', '101 ICON "umaipoe.ico"'),
         ("modern_ui_window.cpp", 'LoadIconW(hInst, L"GLFW_ICON")', 'LoadIconW(hInst, MAKEINTRESOURCEW(101))'),
     ):
         p=host/name
