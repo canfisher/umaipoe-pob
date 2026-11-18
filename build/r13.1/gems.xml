@@ -1,0 +1,9 @@
+<PathOfBuilding>
+  <Build className="Scion" ascendClassName="None" level="90" mainSocketGroup="1" targetVersion="3_0" viewMode="SKILLS"/>
+  <Skills activeSkillSet="1"><SkillSet id="1"><Skill enabled="true" slot="Body Armour" mainActiveSkill="1">
+    <Gem nameSpec="Arcanist Brand" gemId="Metadata/Items/Gems/SkillGemBrandSupport" level="16" quality="0" enabled="true"/>
+    <Gem nameSpec="Frostbite" gemId="Metadata/Items/Gems/SkillGemFrostbite" level="21" quality="0" enabled="true"/>
+    <Gem nameSpec="Elemental Weakness" gemId="Metadata/Items/Gems/SkillGemElementalWeakness" level="20" quality="0" enabled="true"/>
+    <Gem nameSpec="Assassin's Mark" gemId="Metadata/Items/Gems/SkillGemAssassinsMark" level="20" quality="0" enabled="true"/>
+  </Skill></SkillSet></Skills>
+</PathOfBuilding>
