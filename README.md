@@ -13,3 +13,5 @@ python tools/prepare.py --output artifacts/Umaipoe-PoB-r13.9-candidate.zip
 첫 명령은 공개 r13.9의 SHA-256을 확인하고 수정 대상과 번역을 검증합니다. 두 번째 명령은 같은 검증을 통과한 Windows 테스트 ZIP을 만듭니다. 두 명령 모두 다운로드한 원본을 `artifacts/`에 보관합니다. 원본 ZIP을 이미 갖고 있으면 `--base-zip`으로 경로를 지정할 수 있습니다.
 
 Windows에서는 `--native`를 추가하면 원본과 수정본의 PoB 엔진으로 대표 설정 문구를 직접 비교합니다. 공개 자동 업데이트에는 새 릴리스 버전과 검증을 마친 ZIP, 기존 배포 키로 서명한 `latest.json`이 필요합니다. 테스트 ZIP은 별도의 공유용 파일입니다.
+
+휴대폰에서 Windows 검증을 시작하려면 GitHub의 **Actions → PoB Windows 검증 → Run workflow**를 선택합니다. 성공한 실행의 **Artifacts**에서 후보 ZIP을 받을 수 있습니다. `main`의 검증 스크립트가 바뀌면 같은 검증이 자동으로 실행됩니다.

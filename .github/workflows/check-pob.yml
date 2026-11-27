@@ -20,7 +20,7 @@ jobs:
         with:
           persist-credentials: false
       - name: 기준 ZIP 확인 · 번역 검증 · 후보 ZIP 생성
-        run: python tools/prepare.py --native --output artifacts/Umaipoe-PoB-r13.9-candidate.zip
+        run: python -X utf8 tools/prepare.py --native --output artifacts/Umaipoe-PoB-r13.9-candidate.zip
       - uses: actions/upload-artifact@v4
         with:
           name: Umaipoe-PoB-r13.9-candidate
