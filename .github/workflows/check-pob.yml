@@ -1,0 +1,30 @@
+name: PoB Windows 검증
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/**'
+      - '.github/workflows/check-pob.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: 기준 ZIP 확인 · 번역 검증 · 후보 ZIP 생성
+        run: python tools/prepare.py --native --output artifacts/Umaipoe-PoB-r13.9-candidate.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Umaipoe-PoB-r13.9-candidate
+          path: artifacts/Umaipoe-PoB-r13.9-candidate.zip
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
